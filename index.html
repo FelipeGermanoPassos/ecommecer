@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce Simples</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="logo">
+          <i class="fas fa-shopping-bag"></i>
+          <h1>ShopEasy</h1>
+        </div>
+        <nav>
+          <button id="favoritesBtn" class="nav-btn">
+            <i class="fas fa-heart"></i>
+            <span class="badge" id="favoritesCount">0</span>
+          </button>
+          <button id="cartBtn" class="nav-btn">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="badge" id="cartCount">0</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- Filtros -->
+      <aside class="filters">
+        <h2>Filtros</h2>
+
+        <div class="filter-group">
+          <h3>Categorias</h3>
+          <div id="categoryFilters">
+            <label> <input type="checkbox" value="all" checked /> Todas </label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <h3>Preço</h3>
+          <div class="price-filter">
+            <label>
+              Mínimo: R$ <span id="minPriceValue">0</span>
+              <input
+                type="range"
+                id="minPrice"
+                min="0"
+                max="5000"
+                value="0"
+                step="50"
+              />
+            </label>
+            <label>
+              Máximo: R$ <span id="maxPriceValue">5000</span>
+              <input
+                type="range"
+                id="maxPrice"
+                min="0"
+                max="5000"
+                value="5000"
+                step="50"
+              />
+            </label>
+          </div>
+        </div>
+
+        <button id="clearFilters" class="btn-secondary">Limpar Filtros</button>
+      </aside>
+
+      <!-- Catálogo -->
+      <section class="catalog">
+        <div class="catalog-header">
+          <h2>Produtos</h2>
+          <div class="view-toggle">
+            <button id="showFavorites" class="btn-secondary">
+              <i class="fas fa-heart"></i> Ver Favoritos
+            </button>
+          </div>
+        </div>
+        <div id="productGrid" class="product-grid">
+          <!-- Produtos serão inseridos aqui via JavaScript -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal do Carrinho -->
+    <div id="cartModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Meu Carrinho</h2>
+          <button class="close-btn" id="closeCart">&times;</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+          <!-- Itens do carrinho serão inseridos aqui -->
+        </div>
+        <div class="cart-footer">
+          <div class="cart-total">
+            <strong>Total:</strong>
+            <span id="cartTotal">R$ 0,00</span>
+          </div>
+          <button id="checkoutBtn" class="btn-primary">Finalizar Compra</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Checkout -->
+    <div id="checkoutModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Checkout</h2>
+          <button class="close-btn" id="closeCheckout">&times;</button>
+        </div>
+        <form id="checkoutForm">
+          <div class="form-group">
+            <label for="name">Nome Completo</label>
+            <input type="text" id="name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefone</label>
+            <input type="tel" id="phone" required />
+          </div>
+          <div class="form-group">
+            <label for="address">Endereço</label>
+            <input type="text" id="address" required />
+          </div>
+          <div class="form-group">
+            <label for="payment">Forma de Pagamento</label>
+            <select id="payment" required>
+              <option value="">Selecione...</option>
+              <option value="credit">Cartão de Crédito</option>
+              <option value="debit">Cartão de Débito</option>
+              <option value="pix">PIX</option>
+              <option value="boleto">Boleto</option>
+            </select>
+          </div>
+          <div class="checkout-total">
+            <strong>Total:</strong>
+            <span id="checkoutTotal">R$ 0,00</span>
+          </div>
+          <button type="submit" class="btn-primary">Confirmar Pedido</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div id="successModal" class="modal">
+      <div class="modal-content success-content">
+        <div class="success-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h2>Pedido Confirmado!</h2>
+        <p>Seu pedido foi realizado com sucesso.</p>
+        <p class="order-number">
+          Número do pedido: <strong id="orderNumber"></strong>
+        </p>
+        <button id="closeSuccess" class="btn-primary">
+          Continuar Comprando
+        </button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
